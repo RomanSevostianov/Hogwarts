@@ -6,6 +6,7 @@ import ru.hogwarts.school2.model.Student;
 import ru.hogwarts.school2.services.StudentServices;
 
 import java.util.Collection;
+import java.util.List;
 
 
 @RestController//в данном классе будет реализованна логика обработки клиентских запросов
@@ -13,13 +14,13 @@ import java.util.Collection;
 @RequestMapping("students")
 public class StudentController {
 
-    private StudentServices studentServices;
+    private final StudentServices studentServices;
 
     public StudentController(StudentServices studentServices) {
         this.studentServices = studentServices;
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
 
     public ResponseEntity <Student> getStudentInfo (@PathVariable long id){
         Student student = studentServices.getStudent(id);
@@ -34,17 +35,14 @@ public class StudentController {
         return studentServices.createStudent(student);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
 
-    public ResponseEntity <Student> deleteStudent (@PathVariable long id){
-      Student student = studentServices.removeStudent(id);
-      if (student == null){
-          return  ResponseEntity.notFound().build();
-      }
-      return ResponseEntity.ok(student);
+    public ResponseEntity<Student>  deleteStudent (@PathVariable long id){
+     studentServices.removeStudent(id);
+     return ResponseEntity.ok().build();
     }
 
-    @PutMapping () // update запрос
+    @PutMapping ("/student") // update запрос
 
     public ResponseEntity <Student> putStudent (@RequestBody Student student)
     {
@@ -60,16 +58,10 @@ public class StudentController {
         return ResponseEntity.ok(studentServices.getAllStudent());
     }
 
-@GetMapping ("/age/{StudentAge}")
-   public ResponseEntity <Collection<Student>> fingStudentAge (@PathVariable Integer StudentAge){
-        Collection<Student> result = studentServices.getFindStudent(StudentAge);
-        if (result.size()==0){
-            return  ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(result);
-
+@GetMapping ("/findAge/{age}")
+    public ResponseEntity<List<Student>> findAgeStudent(int age){
+        return ResponseEntity.ok(studentServices.getFindStudentAge(age));
 }
-
 
 
 }
