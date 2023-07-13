@@ -15,9 +15,9 @@ class Student {
     @GeneratedValue
     private Long id;
     private String name;
-    private int age;
+    private long age;
 
-   private Student(Long id, String name, int age) {
+   private Student(Long id, String name, long age) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -44,11 +44,11 @@ class Student {
         this.name = name;
     }
 
-    public int getAge() {
+    public long getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(long age) {
         this.age = age;
     }
 

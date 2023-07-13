@@ -41,7 +41,7 @@ public class StudentServices {
     }
 
 
-public List<Student> getFindStudentAge (int age){
+public List<Student> getFindStudentAge (long age){
         return studentRepositiry.getAgeFind(age);
 }
 }

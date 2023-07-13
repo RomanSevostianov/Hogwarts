@@ -10,5 +10,6 @@ import java.util.List;
 public interface StudentRepositiry extends JpaRepository<Student,Long> {
 
 
-    List<Student> getAgeFind(int age);
+    List<Student> getAgeFind(long age);
+
 }
