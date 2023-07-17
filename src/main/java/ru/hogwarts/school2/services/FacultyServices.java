@@ -2,7 +2,7 @@ package ru.hogwarts.school2.services;
 
 import org.springframework.stereotype.Service;
 import ru.hogwarts.school2.model.Faculty;
-import ru.hogwarts.school2.repositories.FacultyRepository;
+import ru.hogwarts.school2.repository.FacultyRepository;
 
 
 import java.util.List;
